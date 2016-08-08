@@ -3,10 +3,10 @@
 GIT_REPO="https://github.com/maluberian/rocketlaunch.git"
 GIT_LOCAL_DIR="/tmp/rocketlaunch"
 
-PROFILE="/tmp/.profile"
+PROFILE="/home/pi/.profile"
 PROFILE_TMP="/tmp/.profile.tmp"
 
-RC_FILE="/tmp/rc.local"
+RC_FILE="/etc/rc.local"
 RC_TMP="/tmp/rc.tmp"
 
 # clone repository
