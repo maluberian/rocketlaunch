@@ -32,16 +32,16 @@ fi
 cp $RC_FILE $RC_TMP
 
 sed -e "/^exit.*/Q" $RC_FILE > $RC_TMP
-mv $RC_TMP $RC_FILE
+sudo mv $RC_TMP $RC_FILE
 sed -e "s/.*amixer.*//" $RC_FILE > $RC_TMP
-mv $RC_TMP $RC_FILE
+sudo mv $RC_TMP $RC_FILE
 sed -e "s/.*rocketlaunch.*//" $RC_FILE > $RC_TMP
-mv $RC_TMP $RC_FILE
+sudo mv $RC_TMP $RC_FILE
 
-echo -e "amixer cset numid=3 1" >> $RC_FILE
-echo -e "amixer -c 0 set PCM playback 100% unmute" >> $RC_FILE
-echo >> $RC_FILE
-echo "exit 0" >> $RC_FILE
+sudo echo -e "amixer cset numid=3 1" >> $RC_FILE
+sudo echo -e "amixer -c 0 set PCM playback 100% unmute" >> $RC_FILE
+sudo echo >> $RC_FILE
+sudo echo "exit 0" >> $RC_FILE
 
 # setup HOME profile to run 
 if [[ ! -e $PROFILE_SAVE ]]
