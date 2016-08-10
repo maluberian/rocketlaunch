@@ -16,13 +16,13 @@ git clone https://github.com/maluberian/rocketlaunch.git /tmp/rocketlaunch
 # copy files to the right spots
 cp /tmp/rocketlaunch/rocketlaunch.py /home/pi
 cp /tmp/rocketlaunch/rocketlaunch.sb /home/pi
-cp /tmp/rocketlaunch/uninstall.rocketlaunch.sh /home/pi/rocketlaunch/.uninstall.rocketlaunch.sh
-chown pi:pi /home/pi/rocketlaunch/.uninstall.rocketlaunch.sh
-cp /tmp/rocketlaunch/rocketlaunch.common.sh /home/pi/rocketlaunch/.rocketlaunch.common.sh
-chown pi:pi /home/pi/rocketlaunch/.rocketlaunch.common.sh
+cp /tmp/rocketlaunch/uninstall.rocketlaunch.sh /home/pi/.uninstall.rocketlaunch.sh
+chown pi:pi /home/pi/.uninstall.rocketlaunch.sh
+cp /tmp/rocketlaunch/rocketlaunch.common.sh /home/pi/.rocketlaunch.common.sh
+chown pi:pi /home/pi/.rocketlaunch.common.sh
 chown pi:pi /home/pi/rocketlaunch.*
 
-source /home/pi/rocketlaunch/.rocketlaunch.common.sh
+source /home/pi/.rocketlaunch.common.sh
 
 # setup the rc.local
 if [[ ! -e $RC_SAVE ]]
