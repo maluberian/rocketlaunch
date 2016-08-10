@@ -40,5 +40,6 @@ fi
 echo -e "alias runlaunch='touch .rocketlaunch; cat /home/pi/.profile.launch > /home/pi/.profile'" >> /home/pi/.bashrc
 echo -e "alias cancellaunch='rm .rocketlaunch; cat /home/pi/.profile.normal > /home/pi/.profile'" >> /home/pi/.bashrc
 chown pi:pi /home/pi/.bashrc
+source /home/pi/.bashrc
 
 rm -rf $GIT_LOCAL_DIR
