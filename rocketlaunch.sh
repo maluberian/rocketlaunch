@@ -60,4 +60,6 @@ echo -e "alias runlaunch='touch $LAUNCH_FILE'" >> $PROFILE
 echo -e "alias cancellaunch='rm $LAUNCH_FILE'" >> $PROFILE
 chown pi:pi /home/pi/.profile
 
+source $PROFILE
+
 rm -rf $GIT_LOCAL_DIR
