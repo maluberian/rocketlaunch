@@ -36,7 +36,7 @@ echo -e "if [[ -e $LAUNCH_FILE ]]" >> $PROFILE
 echo -e "then" >> $PROFILE
 echo -e "\tamixer cset numid=3 1" >> $PROFILE
 echo -e "\tamixer -c 0 set PCM playback 100% unmute" >> $PROFILE
-echo -e "\t\`\(sleep 5\; /usr/bin/scratch /home/pi/rocketlaunch.sb && /usr/bin/python /home/pi/rocketlaunch.py\) &\`" >> $PROFILE
+echo -e "\t\`(sleep 5; /usr/bin/scratch /home/pi/rocketlaunch.sb && /usr/bin/python /home/pi/rocketlaunch.py) &\`" >> $PROFILE
 echo -e "\trm $LAUNCH_FILE" >> $PROFILE
 echo -e "fi" >> $PROFILE
 echo  >> $PROFILE
