@@ -49,6 +49,7 @@ then
 fi
 sed -e "s/.*rocketlaunch.*//" $PROFILE > $PROFILE_TMP
 mv $PROFILE_TMP $PROFILE
+echo -e >> $PROFILE
 echo -e "if [[ -e $LAUNCH_FILE ]]" >> $PROFILE
 echo -e "then" >> $PROFILE
 echo -e "\t/usr/bin/scratch /home/pi/rocketlaunch.sb && /usr/bin/python /home/pi/rocketlaunch.py" >> $PROFILE
