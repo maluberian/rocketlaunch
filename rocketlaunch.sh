@@ -27,9 +27,8 @@ source /home/pi/.rocketlaunch.common.sh
 # setup the rc.local
 if [[ ! -e $RC_SAVE ]]
 then
-	cp $RC_FILE $RC_SAVE
+	sudo cp $RC_FILE $RC_SAVE
 fi
-cp $RC_FILE $RC_TMP
 
 sed -e "/^exit.*/Q" $RC_FILE > $RC_TMP
 sudo mv $RC_TMP $RC_FILE
