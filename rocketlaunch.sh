@@ -28,8 +28,8 @@ then
 	cp /home/pi/.profile /home/pi/.profile.save
 fi
 echo -e >> /home/pi/.profile
-echo -e "alias runlaunch='touch $LAUNCH_FILE; cat /home/pi/.profile.launch > /home/pi/.profile'" >> /home/pi/.profile
-echo -e "alias cancellaunch='rm $LAUNCH_FILE; cat /home/pi/.profile.normal > /home/pi/.profile'" >> /home/pi/.profile
+echo -e "alias runlaunch='touch .rocketlaunch; cat /home/pi/.profile.launch > /home/pi/.profile'" >> /home/pi/.profile
+echo -e "alias cancellaunch='rm .rocketlaunch; cat /home/pi/.profile.normal > /home/pi/.profile'" >> /home/pi/.profile
 cp /home/pi/.profile /home/pi/.profile.normal
 chown pi:pi /home/pi/.profile
 
