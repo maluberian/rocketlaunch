@@ -24,24 +24,6 @@ chown pi:pi /home/pi/rocketlaunch.*
 
 source /home/pi/.rocketlaunch.common.sh
 
-# setup the rc.local
-if [[ ! -e $RC_SAVE ]]
-then
-	sudo cp $RC_FILE $RC_SAVE
-fi
-
-sed -e "/^exit.*/Q" $RC_FILE > $RC_TMP
-sudo mv $RC_TMP $RC_FILE
-sed -e "s/.*amixer.*//" $RC_FILE > $RC_TMP
-sudo mv $RC_TMP $RC_FILE
-sed -e "s/.*rocketlaunch.*//" $RC_FILE > $RC_TMP
-sudo mv $RC_TMP $RC_FILE
-
-sudo echo -e "amixer cset numid=3 1" >> $RC_FILE
-sudo echo -e "amixer -c 0 set PCM playback 100% unmute" >> $RC_FILE
-sudo echo >> $RC_FILE
-sudo echo "exit 0" >> $RC_FILE
-
 # setup HOME profile to run 
 if [[ ! -e $PROFILE_SAVE ]]
 then
@@ -52,6 +34,8 @@ mv $PROFILE_TMP $PROFILE
 echo -e >> $PROFILE
 echo -e "if [[ -e $LAUNCH_FILE ]]" >> $PROFILE
 echo -e "then" >> $PROFILE
+echo -e "\tamixer cset numid=3 1" >> $PROFILE
+echo -e "\tamixer -c 0 set PCM playback 100% unmute" >> $PROFILE
 echo -e "\t/usr/bin/scratch /home/pi/rocketlaunch.sb && /usr/bin/python /home/pi/rocketlaunch.py" >> $PROFILE
 echo -e "\trm $LAUNCH_FILE" >> $PROFILE
 echo -e "fi" >> $PROFILE
