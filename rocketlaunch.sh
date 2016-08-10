@@ -18,32 +18,21 @@ cp /tmp/rocketlaunch/rocketlaunch.py /home/pi
 cp /tmp/rocketlaunch/rocketlaunch.sb /home/pi
 cp /tmp/rocketlaunch/uninstall.rocketlaunch.sh /home/pi/.uninstall.rocketlaunch.sh
 chown pi:pi /home/pi/.uninstall.rocketlaunch.sh
-cp /tmp/rocketlaunch/rocketlaunch.common.sh /home/pi/.rocketlaunch.common.sh
-chown pi:pi /home/pi/.rocketlaunch.common.sh
+cp /tmp/rocketlaunch/profile.launch /home/pi/.profile.launch
+chown pi:pi /home/pi/.profile.launch
 chown pi:pi /home/pi/rocketlaunch.*
 
-source /home/pi/.rocketlaunch.common.sh
-
 # setup HOME profile to run 
-if [[ ! -e $PROFILE_SAVE ]]
+if [[ ! -e /home/pi/.profile.save ]]
 then
-	cp $PROFILE $PROFILE_SAVE
+	cp /home/pi/.profile /home/pi/.profile.save
 fi
-sed -e "s/.*rocketlaunch.*//" $PROFILE > $PROFILE_TMP
-mv $PROFILE_TMP $PROFILE
-echo -e >> $PROFILE
-echo -e "if [[ -e $LAUNCH_FILE ]]" >> $PROFILE
-echo -e "then" >> $PROFILE
-echo -e "\tamixer cset numid=3 1" >> $PROFILE
-echo -e "\tamixer -c 0 set PCM playback 100% unmute" >> $PROFILE
-echo -e "\t\`(sleep 5; /usr/bin/scratch /home/pi/rocketlaunch.sb && /usr/bin/python /home/pi/rocketlaunch.py) &\`" >> $PROFILE
-echo -e "\trm $LAUNCH_FILE" >> $PROFILE
-echo -e "fi" >> $PROFILE
-echo  >> $PROFILE
-echo -e "alias runlaunch='touch $LAUNCH_FILE'" >> $PROFILE
-echo -e "alias cancellaunch='rm $LAUNCH_FILE'" >> $PROFILE
+echo -e >> /home/pi/.profile
+echo -e "alias runlaunch='touch $LAUNCH_FILE; cat /home/pi/.profile.launch > /home/pi/.profile'" >> /home/pi/.profile
+echo -e "alias cancellaunch='rm $LAUNCH_FILE; cat /home/pi/.profile.normal > /home/pi/.profile'" >> /home/pi/.profile
+cp /home/pi/.profile /home/pi/.profile.normal
 chown pi:pi /home/pi/.profile
 
-source $PROFILE
+source /home/pi/.profile
 
 rm -rf $GIT_LOCAL_DIR

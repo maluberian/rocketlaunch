@@ -1,0 +1,31 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+amixer cset numid=3 1
+amixer -c 0 set PCM playback 100% unmute
+if [[ -e /home/pi/.rocketlaunch && ! -e /home/pi/.rocketlaunch.run ]]
+then
+	touch .rocketlaunch.run
+	(/usr/bin/python /home/pi/rocketlaunch.py && rm /home/pi/.rocketlaunch && rm /home/pi/.rocketlaunch.run && (cat /home/pi/.profile.normal > /home/pi/.profile)) &
+fi
+/usr/bin/scratch /home/pi/rocketlaunch.sb 
