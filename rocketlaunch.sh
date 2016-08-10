@@ -26,13 +26,19 @@ chown pi:pi /home/pi/rocketlaunch.*
 if [[ ! -e /home/pi/.profile.save ]]
 then
 	cp /home/pi/.profile /home/pi/.profile.save
+	chown pi:pi /home/pi/.profile.save
 fi
-echo -e >> /home/pi/.profile
-echo -e "alias runlaunch='touch .rocketlaunch; cat /home/pi/.profile.launch > /home/pi/.profile'" >> /home/pi/.profile
-echo -e "alias cancellaunch='rm .rocketlaunch; cat /home/pi/.profile.normal > /home/pi/.profile'" >> /home/pi/.profile
 cp /home/pi/.profile /home/pi/.profile.normal
-chown pi:pi /home/pi/.profile
-
+chown pi:pi /home/pi/.profile.normal
 source /home/pi/.profile
+
+# setup HOME .bashrc
+if [[ ! -e /home/pi/.bashrc ]]
+then
+	cp /home/pi/.bashrc /home/pi/.bashrc.save
+fi
+echo -e "alias runlaunch='touch .rocketlaunch; cat /home/pi/.profile.launch > /home/pi/.profile'" >> /home/pi/.bashrc
+echo -e "alias cancellaunch='rm .rocketlaunch; cat /home/pi/.profile.normal > /home/pi/.profile'" >> /home/pi/.bashrc
+chown pi:pi /home/pi/.bashrc
 
 rm -rf $GIT_LOCAL_DIR
